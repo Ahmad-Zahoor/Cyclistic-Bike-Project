@@ -23,7 +23,7 @@
 ## ASK
 > In this phase, I will identify the main problem that facing by Cyclistic Bike company. I will also understand the needs of Stakeholders.
 
-#### Guiding Quistions
+#### Guiding Questions
 
 ##### What is the Problem you are trying to solve?
 
@@ -37,7 +37,7 @@
 
 1. Identify the business task
 
-2. Consider key Stakeholders
+2. Consider Key Stakeholders
 
 #### Business tasks:
 
@@ -95,21 +95,21 @@ for file in list_of_files:
 
 **How is the data organized?**
 
->The data is separated by month, each on it's own csv.
+>The data is separated by month, each on its own csv.
 
 **Are there issues with bias or credibility in this data? Does your data ROCCC?**
 
->Bias isn't a problem, the population of the dataset is it's own clients as bike riders. And have full credibility for the same reason. And finally, it's ROCCC because it's reliable, original, comprehensive, current and cited.
+>Bias isn't a problem, the population of the dataset is its own clients as bike riders. And have full credibility for the same reason. And finally, it's ROCCC because it's reliable, original, comprehensive, current, and cited.
 
 **How are you addressing licensing, privacy, security, and accessibility?**
 
->The company has their own licence over the dataset. Besides that, the dataset doesn't have any personal information about the riders.
+>The company has its own license over the dataset. Besides that, the dataset doesn't have any personal information about the riders.
 
 **How does it help you answer your question?**
 >It may have some key insights about the riders and their riding style
 
 **Are there any problems with the data?**
->It would be good to have some updated information about the bike stations. Also more information about the riders could be useful.
+>It would be good to have some updated information about the bike stations. Also, more information about the riders could be useful.
 
 #### Key tasks:
 
@@ -126,7 +126,7 @@ for file in list_of_files:
 
 ## PROCESS
 
->In this phase, I will clean the data by removing duplicates, handling missing values, identify outlier and make the data accurate for analysis.
+>In this phase, I will clean the data by removing duplicates, handling missing values, identifying outliers, and making the data accurate for analysis.
 
 #### Import libraries
 
@@ -189,10 +189,10 @@ dtypes: float64(4), object(9)
 memory usage: 4.9+ MB
 ```
 
->First part of the data cleaning process is to fix the data types of all the columns in order to make them easier to manipulate and be more manageable. It should be noted that for several columns the data type was changed to strings, when the data types are displayed, they show up as objects as strings are a type of object in pandas.
+>First part of the data cleaning process is to fix the data types of all the columns in order to make them easier to manipulate and more manageable. It should be noted that for several columns the data type was changed to strings, when the data types are displayed, they show up as objects as strings are a type of object in pandas.
 
 ```r
-# Parse started_at, ended_at columns to datetime
+# Parse started_at, ended_at columns to DateTime
 for df in all_dataframes:
     
     # started_at
@@ -257,7 +257,7 @@ combined_df.shape
 combined_df['day_of_week'] = combined_df['started_at'].dt.strftime('%a')
 # Day order
 day_order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-# Convert 'day_of_week' column to categorical with custom order
+# Convert 'day_of_week' column to categorical with a custom order
 cat_dtype = pd.CategoricalDtype(categories=day_order, ordered=True)
 combined_df['day_of_week'] = combined_df['day_of_week'].astype(cat_dtype)
 ```
@@ -278,18 +278,18 @@ combined_df['month'] = combined_df['started_at'].dt.strftime('%m')
 combined_df['trip_duration'] = (combined_df['ended_at'] - combined_df['started_at'])/pd.Timedelta(minutes=1)
 ```
 
-#### Remove those records which trip_duration less than or equal to 0
+#### Remove those records whose trip_duration less than or equal to 0
 
 ```r
 negative_record = combined_df[combined_df['trip_duration']<=1]
 
-#check shape of negative records
+#check the shape of negative records
 negative_record.shape
 
 # now make new df without negative records
 new_df = combined_df[combined_df['trip_duration']>1].reset_index().drop(columns='index')
 
-# again check the new df shape
+# Again check the new df shape
 new_df.shape
 ```
 
@@ -337,7 +337,7 @@ duplicate_records = df_without_nulls[df_without_nulls.duplicated('ride_id')]
 # display duplicate records
 duplicate_records.head()
 ```
->There was no duplicate records in the dataset.
+>There were no duplicate records in the dataset.
 
 #### Handling outliers
 
@@ -347,7 +347,7 @@ pd.set_option('display.float_format', lambda x: '%.2f' % x)
 
 df_without_nulls.describe()
 ```
->Here you will see the trip_duration column which have maximum 55944 (minutes) value which is extream value and it will effect our analysis.
+>Here you will see the trip_duration column which has a maximum 55944 (minutes) value which is an extreme value and it will affect our analysis.
 
 ```r
 # Now convert the trip_duration data into percentile to check the data range in each percentile
@@ -365,7 +365,7 @@ for i, ventile in enumerate(ventiles):
 
 print(output)
 ```
->The above code will print the percentile range so the difference between 1% and 95% is 57.3 minutes. Because of that, in the analysis of this variable we are going to use a subset of the dataset without outliners. The subset will contain 95% of the dataset.
+>The above code will print the percentile range so the difference between 1% and 95% is 57.3 minutes. Because of that, in the analysis of this variable, we are going to use a subset of the dataset without outliers. The subset will contain 95% of the dataset.
 
 ```r
 # Now keep 95% data that will clear of outliers
@@ -477,14 +477,14 @@ px.bar(casual_members_data, y='member_casual', x='ride_id',
 
 >Observation:
 
->As we can see on the member x casual table, members have a bigger proporcion of the dataset, composing ~57%, ~12% bigger than the count of casual riders.
+>As we can see on the member x casual table, members have a bigger proportion of the dataset, composing ~57%, ~12% bigger than the count of casual riders.
 
 **2: How do casual and members use their bikes differently throughout the week**
 
 ```r
 # Day order
 day_order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-# Convert 'day_of_week' column to categorical with custom order
+# Convert the 'day_of_week' column to categorical with a custom order
 cat_dtype = pd.CategoricalDtype(categories=day_order, ordered=True)
 new_df['day_of_week'] = new_df['day_of_week'].astype(cat_dtype)
 ```
@@ -511,18 +511,18 @@ px.line(day_of_week, x='day_of_week', y='ride_id',
 
 >Observation:
 
->Here, we can find that overall ridership for annual members is fairly stable across the week. Such would indicate that there is a possibility that annual members are using the bikes as their main mode of transportation.
+>Here, we can find that overall ridership for annual members is fairly stable across the week. Such would indicate that there is a possibility that annual members are using bikes as their main mode of transportation.
 
 >On the other hand, ridership for casual members is fairly low on the weekdays but starts to ramp up on Fridays and eventually peaks on Saturdays.
 
 **3: Peak hours of bike usage between casual and annual members**
 
->We first see the Peak hourse of bike usage between casual and annual members on the weekdays.
+>We first see the Peak hours of bike usage between casual and annual members on the weekdays.
 
 ```r
 weekday_names = ["Mon", "Tue", "Wed", "Thu", "Fri"]  # List of weekday names
 
-# Filter the dataframe to keep only the weekday records
+# Filter the data frame to keep only the weekday records
 weekday_df = new_df[new_df['day_of_week'].isin(weekday_names)]
 ```
 
@@ -560,7 +560,7 @@ peak_hour_fig.show()
 - 5 pm: A peak in usage, which again falls in line with the office off-hours
 
 
->Now see the Peak hourse of bike usage between casual and annual members on the weekendays.
+>Now see the Peak hours of bike usage between casual and annual members on the weekends.
 
 ```r
 weekendays = ["Sat", "Sun"]
@@ -622,7 +622,7 @@ month_fig.show()
 
 >As we can see, ridership starts to freefall during the later months of the year. This is possible due to the change of seasons as usually in the months of October, the temperature starts to drop and the possibility of snow entails after.
 
->Interestingly, casual member ridership peaks in the month of July. Knowing that schools in Chicago end around the middle of July, and resumes at end of August, we could hypothesize that the majority of the said users are not high school students.
+>Interestingly, casual member ridership peaks in the month of July. Knowing that schools in Chicago end around the middle of July, and resume at the end of August, we could hypothesize that the majority of the said users are not high school students.
 
 **5: The average trip duration between casual and annual members**
 
@@ -634,7 +634,7 @@ average_group['trip_duration'] = average_group['trip_duration'].round(2)
 ```r
 average_fig = px.bar(average_group, x='day_of_week', y='trip_duration',
                      color='member_casual',
-                     title='Average Trip duration usage by Member Type in whole week',
+                     title='Average Trip duration usage by Member Type in a whole week',
                      labels={'trip_duration':'Average Trip Duration', 'member_casual':'Member/Casual', 'day_of_week':'Week Days'},
                      hover_name='member_casual', hover_data={'member_casual':False, 'day_of_week':True, 'trip_duration':True},
                      color_discrete_map={'casual':'#FF934F', 'member':'#058ED9'}
@@ -682,7 +682,7 @@ rideable_type_fig.show()
 >Observations:
 
 - Members have a bigger preference for classic bikes and electric bikes which show ~44% for classic_bike and ~12% for electric_bike.
-- Casual have ~26% preference for classic bikes and 16% for electric_bike.
+- Casuals have ~26% preference for classic bikes and 16% for electric bikes.
 - Casual also use the docked_bike by ~5% but Member dont use the docked_bike.
 
 #### Guiding questions
@@ -694,24 +694,24 @@ The data has been organized into a single CSV concatenating all the files from t
 
 >Yes, all the columns have their correct data type.
 
->One of the main surprises is how members differ from casuals when analysed from weekdays. Also that members have less riding time than casual.
+>One of the main surprises is how members differ from casuals when analyzed on weekdays. Also that members have less riding time than casual.
 
 **What surprises did you discover in the data?**
 
->One of the main surprises is how members differ from casuals when analysed from weekdays. Also that members have less riding time than casual.
+>One of the main surprises is how members differ from casuals when analyzed on weekdays. Also that members have less riding time than casual.
 
 **What trends or relationships did you find in the data?**
 
 - There are more members than casuals in the dataset.
-- There are more data points in the July 2021.
-- There are more of a difference between the flow of members/casual from midweek to weekends.
-- Members use bikes on schedules that differs from casual.
+- There are more data points in July 2021.
+- There is more of a difference between the flow of members/casual from midweek to weekends.
+- Members use bikes on schedules that differ from casual.
 - Members have less riding time.
 - Members tend to prefer classic bikes.
 
 **How will these insights help answer your business questions?**
 
->This insights helps to build a profile for members.
+> This insight helps to build a profile for members.
 
 #### Key tasks
 
@@ -732,36 +732,36 @@ The data has been organized into a single CSV concatenating all the files from t
 
 >What we know about the dataset:
 
-- Members have the biggest proportion of the dataset, ~12% bigger thand casuals.
+- Members have the biggest proportion of the dataset, ~12% bigger than casuals.
 - The month with the biggest count of data points was July.
 - In all months we have more members' rides than casual rides.
-- The difference of proporcion of member x casual is smaller in the last semester of 2021.
+- The difference in the proportion of member x casual is smaller in the last semester of 2021.
 - Temperature heavily influences the volume of rides in the month.
-- The biggest volume of data is on the the weekend.
+- The biggest volume of data is on the weekend.
 - There's a bigger volume of bikers in the afternoon.
 
->It's possible to notice that the distribution of rides by month is cyclical through years, it's influenced by the temperature. The remaining question is: Why are there more members than casual? One plausible answer is that members have a bigger need for the bikes than casuals, as can be seen on how there are more members than casuals on cold months.
+>It's possible to notice that the distribution of rides by month is cyclical through the years, it's influenced by the temperature. The remaining question is: Why are there more members than casual? One plausible answer is that members have a bigger need for bikes than casuals, as can be seen in how there are more members than casuals in cold months.
 
->Besides that, we have more bike rides on the weekends. Maybe because on those days the bikes were utilized for more recreational ways. This even more plausible when knowing that There's a bigger volume of bikers in the afternoon.
+>Besides that, we have more bike rides on the weekends. Maybe because in those days bikes were utilized in more recreational ways. This is even more plausible when knowing that There's a bigger volume of bikers in the afternoon.
 
->Now for how members differs from casuals:
+>Now for how members differ from casuals:
 
-- Members may have the biggest volume of data, besides on saturday. On this weekday, casuals take place as having the most data points.
-- Weekends have the biggest volume of casuals, starting on friday, a ~20% increase.
-- We have more members during the morning, mainly between 5am and 11am.
-- There's a big increase of data points in the midweek between 6am to 8am for members. Then it fell a bit. Another big increase is from 4pm to 5pm.
-- During the weekend we have a bigger flow of casuals between 11am to 4pm.
+- Members may have the biggest volume of data, besides on Saturday. On this weekday, casuals take place as having the most data points.
+- Weekends have the biggest volume of casuals, starting on Friday, a ~20% increase.
+- We have more members during the morning, mainly between 5 am and 11 am.
+- There's a big increase of data points in the midweek between 6 am to 8 am for members. Then it fell a bit. Another big increase is from 4 pm to 5 pm.
+- During the weekend we have a bigger flow of casuals between 11 am to 4 pm.
 - Members have a bigger preference for classic bikes, 44% more.
 - Casuals have more riding time than members.
 - Riding time for members keeps unchanged during the midweek, increasing during weekends.
-- Casuals follow a more curve distribution, peaking on sundays and valleying on wednesday/thursday.
+- Casuals follow a more curve distribution, peaking on Sundays and volleying on Wednesdays/Thursdays.
 
->What we can take from this information is that members have a more fixed use for bikes besides casuals. Their uses is for more routine activities, like:
+>What we can take from this information is that members have a more fixed use for bikes besides casuals. Their uses are for more routine activities, like:
 
 - Go to work.
 - Use it as an exercise
 
->This can be proven we state that we have more members in between 6am to 8am and at 5pm to 6pm. Also, members may have set routes when using the bikes, as proven by riding time for members keeps unchanged during the midweek, increasing during weekends. The bikes is also heavily used for recreation on the weekends, when riding time increases and casuals take place.
+>This can be proven we state that we have more members between 6 am to 8 am and from 5 pm to 6 pm. Also, members may have set routes when using the bikes, as proven by riding time for members keeps unchanged during the midweek, increasing during weekends. The bikes are also heavily used for recreation on the weekends when riding time increases and casuals take place.
 
 >Members also have a bigger preference for classic bikes, so they can exercise when going to work.
 
@@ -779,10 +779,10 @@ The data has been organized into a single CSV concatenating all the files from t
 
 **What story does your data tell?**
 
->The main story the data tells is that members have set schedules, as seen timestamps on weekdays chart. Those timestamps point out that members use the bikes for routine activities, like going to work. Average time Chart also point out that they have less riding time, because they have a set route to take.
+>The main story the data tells is that members have set schedules, as seen in timestamps on the weekday chart. Those timestamps point out that members use the bikes for routine activities, like going to work. The average time Chart also point out that they have less riding time because they have a set route to take.
 
 **How do your findings relate to your original question?**
->The findings build a profile for members, relating to "Find the keys differences between casuals and annual riders", also knowing why they use the bikes helps to find "How digital media could influence them".
+>The findings build a profile for members, relating to "Find the key differences between casuals and annual riders", also knowing why they use the bikes helps to find "How digital media could influence them".
 
 **Who is your stakeholders? What is the best way to communicate with them?**
 
@@ -809,17 +809,17 @@ The data has been organized into a single CSV concatenating all the files from t
 
 
 ## ACT
->The act phase would be done by the marketing team of the company. The main takeaway will be the top three recommendations for the marketing.
+>The act phase would be done by the marketing team of the company. The main takeaway will be the top three recommendations for marketing.
 
 #### Guiding questions
 
 **What is your final conclusion based on your analysis?**
 
->Members and casual have different habits when using the bikes. The conclusion is further stated on the share phase.
+>Members and casual have different habits when using the bikes. The conclusion is further stated in the share phase.
 
 **How could your team and business apply your insights?**
 
->The insights could be implemented when preparing a marketing campaign for turning casual into members. The marketing can have a focus on workers as a green way to get to work.
+>The insights could be implemented when preparing a marketing campaign for turning casual into members. The marketing can focus on workers as a green way to get to work.
 
 **What next steps would you or your stakeholders take based on your findings?**
 
@@ -835,12 +835,6 @@ The data has been organized into a single CSV concatenating all the files from t
 
 - Your top three recommendations based on your analysis
 
-1. Build a marketing campaign focusing on show how bikes help people to get to work, while maintaining the planet green and avoid traffic. The ads could be show on professional social networks.
+1. Build a marketing campaign focusing on showing how bikes help people to get to work while maintaining the planet green and avoiding traffic. The ads could be shown on professional social networks.
 2. Increase benefits for riding during cold months. Coupons and discounts could be handed out.
-3. As the bikes are also used for recreations on the weekends, ads campaigns could also be made showing people using the bikes for exercise during the weeks. The ads could focus on how practical and consistent the bikes can be.
-
-
-### Recommendations
-
->    1.  Target Custumer bike rentals for weekend fun.
->    2.  Create a big summer campaign when more people can afford to rent bikes.
+3. As the bikes are also used for recreation on the weekends, ad campaigns could also be made showing people using the bikes for exercise during the week. The ads could focus on how practical and consistent the bikes can be.
