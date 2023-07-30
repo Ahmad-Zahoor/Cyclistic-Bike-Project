@@ -473,7 +473,8 @@ px.bar(casual_members_data, y='member_casual', x='ride_id',
 
 ```
 <p align="center">
-  <img src="/images/member_casual_bar_chart.png">
+  ![plot](./Images/member_casual_bar_chart.png)
+<!--   <img src="/images/member_casual_bar_chart.png"> -->
 
 >Observation:
 
