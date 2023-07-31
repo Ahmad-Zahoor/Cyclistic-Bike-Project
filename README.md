@@ -510,7 +510,6 @@ px.line(day_of_week, x='day_of_week', y='ride_id',
 
 <p align="center">
      <img src="/Images/whole_weekdays.png">
-<!-- ![Alt text](Images/whole_weekdays.png?raw=true "Bar chart") -->
 
 >Observation:
 
@@ -552,8 +551,7 @@ peak_hour_fig.show()
 ```
 
 <p align='center'>
-![Alt Text](Images/hourly_by_weekdays.png?raw=true "Line chart")
-<!-- <img src="/images/hourly_by_weekdays.png"> -->
+     <img src="/Images/hourly_by_weekdays.png">
 
 >Observation:
 
@@ -592,8 +590,7 @@ weenkend_fig.show()
 ```
 
 <p align='center'>
-![Alt Text](Images/hourly_by_weekendays.png?raw=true "Line chart")
-<!-- <img src="/images/hourly_by_weekendays.png"> -->
+     <img src="/Images/hourly_by_weekendays.png">
 
 >Observation:
 
@@ -621,8 +618,7 @@ month_fig.show()
 ```
 
 <p align='center'>
-![Alt Text](Images/member_type_month.png?raw=true "Line chart")
-<!-- <img src='images/member_type_month.png'> -->
+     <img src="/Images/member_type_month.png">
 
 >Observation:
 
@@ -651,8 +647,7 @@ average_fig.show()
 ```
 
 <p align='center'>
-![Alt Text](Images/average_trip_duration.png?raw=true "Bar chart")
-<!-- <img src='images/average_trip_duration.png'> -->
+     <img src="/Images/average_trip_duration.png">
 
 >Observation:
 
@@ -684,8 +679,7 @@ rideable_type_fig.show()
 ```
 
 <p align='center'>
-![Alt Text](Images/rideable_type.png?raw=true "Bar chart")
-<!-- <img src='images/rideable_type.png'> -->
+     <img src="/Images/rideable_type.png">
 
 >Observations:
 
