@@ -509,8 +509,7 @@ px.line(day_of_week, x='day_of_week', y='ride_id',
 ```
 
 <p align="center">
-![Alt text](images/whole_weekdays.png?raw=true "Line chart")
-<!--   <img src="/images/whole_weekdays.png"> -->
+![Alt text](Images/whole_weekdays.png?raw=true "Bar chart")
 
 >Observation:
 
